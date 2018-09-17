@@ -1,0 +1,61 @@
+{
+  "name": "quiz-elections",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "rm -rf dist/* && vue-cli-service build --no-clean",
+    "travis": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "d3-dsv": "^1.0.10",
+    "vue": "^2.5.17",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.2",
+    "@vue/cli-plugin-eslint": "^3.0.2",
+    "@vue/cli-service": "^3.0.2",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/strongly-recommended",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {
+      "vue/attributes-order": "error",
+      "vue/html-quotes": "error",
+      "vue/no-confusing-v-for-v-if": "error",
+      "vue/order-in-components": "error",
+      "vue/this-in-template": "error",
+      "vue/html-closing-bracket-newline": "warning",
+      "vue/html-closing-bracket-spacing": "warning",
+      "vue/no-use-v-if-with-v-for": "error",
+      "vue/no-v-html": "warning",
+      "vue/prop-name-casing": "warning",
+      "vue/script-indent": "warning"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

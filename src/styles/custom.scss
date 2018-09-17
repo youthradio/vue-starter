@@ -1,0 +1,65 @@
+@import "variables";
+@import "mixins";
+@import "fonts";
+@import "icons";
+@import "animations";
+
+//boostrap variables override
+$body-bg: $white;
+$body-color: $black;
+$gray-900: $black;
+
+$font-family-sans-serif:  'Assistant', sans-serif;
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font: 18px/1.7 'Assistant', sans-serif;
+  letter-spacing: 0.5px;
+  color: $black;
+}
+body, html {
+  height: 100%;
+}
+
+.a-dark:hover {
+  color: $black;
+  background-color: $white;
+  border-radius: 5px;
+  text-decoration: none;
+}
+.a-dark {
+  background-color: $black;
+  color: $white;
+}
+.pointer {
+  cursor: pointer;
+}
+
+.share-icon {
+    color: $sky-blue;
+    font-size: 2rem;
+}
+.icon:hover {
+  color: $black;
+  background-color: $white;
+}
+.icon {
+  cursor: pointer;
+  border-radius: 25%;
+  background-color: $black;
+  color: $white;
+}
+/* Document level adjustments */
+html {
+  font-size: 17px;
+}
+@media (max-width: 992px) {
+  html { font-size: 15px; }
+}
+@media (max-width: 576px) {
+  html { font-size: 13px; }
+}
+
+
+@import "../../node_modules/bootstrap/scss/bootstrap";

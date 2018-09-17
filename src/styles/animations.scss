@@ -1,0 +1,67 @@
+.pulse {
+    cursor: pointer;
+    animation-duration: 0.5s;
+    animation-name: pulse;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+@keyframes pulse {
+    from {
+        transform: translateX(-5px);
+    }
+    to {
+        transform: translateX(0px);
+    }
+}
+.shakeNo {
+    animation: shakeNo 0.82s ease-in both;
+    color: $red;
+}
+.shakeYes {
+    animation: shakeYes 0.82s ease-in both;
+    color: $green;
+}
+@keyframes shakeNo {
+    10%,
+    90% {
+        transform: translateX(-1px);
+    }
+
+    20%,
+    80% {
+        transform: translateX(2px);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translateX(-4px);
+    }
+
+    40%,
+    60% {
+        transform: translateX(4px);
+    }
+}
+@keyframes shakeYes {
+    10%,
+    90% {
+        transform: translateY(-1px);
+    }
+
+    20%,
+    80% {
+        transform: translateY(2px);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translateY(-4px);
+    }
+
+    40%,
+    60% {
+        transform: translateY(4px);
+    }
+}

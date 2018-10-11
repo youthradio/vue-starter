@@ -20,17 +20,20 @@
 </template>
 
 <script>
+import CommonUtils from '../mixins/CommonUtils'
+
 export default {
   name: 'MainComponent',
+  mixins: [
+    CommonUtils,
+  ],
   data() {
     return {
       startData: "HELLO"
     }
   },
   computed: {
-    isLoading() {
-      return this.$store.state.isLoading;
-    },
+    
   },
   methods: {
     tweetMessage () {

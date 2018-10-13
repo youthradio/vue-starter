@@ -10,6 +10,10 @@
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  &:hover {
+    opacity: 0.9;
+  }
 }
 
 .icon-arrow-bold-down:before {
@@ -22,6 +26,10 @@
 
 .icon-arrow-right:before {
   content: "\e902";
+}
+
+.icon-arrow-left:before {
+  content: "\e912";
 }
 
 .icon-email-inverted:before {
@@ -82,4 +90,12 @@
 
 .icon-join-us:before {
   content: "\e910";
+}
+
+.icon-play-circle:before {
+  content: "\e913";
+}
+
+.icon-sound-circle:before {
+  content: "\e914";
 }

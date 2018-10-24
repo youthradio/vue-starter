@@ -28,7 +28,6 @@ export default {
     return {}
   },
   created() {
-    this.$store.dispatch('fetchData');
   },
   mounted() {
     const elementRoot = document.querySelector('html');

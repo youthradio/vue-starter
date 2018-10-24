@@ -8,11 +8,15 @@
 
 <script>
 import d3 from '../util/d3';
+import { geoAlbersUsaTerritories } from 'd3-composite-projections';
 import * as topojson from 'topojson';
 import CommonUtils from '../mixins/CommonUtils';
 
 const WIDTH = 960;
 const HEIGHT = 600;
+const MARKER_S_MIN = 0.07;
+const MARKER_S_MAX = 0.15;
+const MARKER_PATH = "M -19.732,-10.330125 C -165.03,-220.96916 -192,-242.58716 -192,-320.00016 c 0,-106.039 85.961,-192 192,-192 106.039,0 192,85.961 192,192 0,77.413 -26.97,99.031 -172.268,309.670035 -9.535,13.774 -29.93,13.773 -39.464,0 z";
 
 export default {
   name: 'USAMap',
@@ -25,28 +29,39 @@ export default {
       aspect: null,
       projection: null,
       path: null,
-      uspath: null,
+      isMapReady: false,
     }
   },
   computed: {
-
+    markersData() {
+      return this.$store.state.markersData;
+    },
+    mapData() {
+      return this.$store.state.mapData;
+    },
+    loadingMarkers() {
+      return this.$store.state.loadingMarkers;
+    },
+    loadingMap() {
+      return this.$store.state.loadingMap;
+    },
   },
   watch: {
-    uspath() {
-      this.drawMap();
+    loadingMap() {
+      this.renderMap();
+    },
+    loadingMarkers() {
+      this.renderMap();
     }
   },
   created() {
-    //fetch us map paths async
-    (async () => {
-      this.uspath = await fetch('maps/us-light.json')
-        .then(res => res.json())
-    })();
+    this.$store.dispatch('fetchData');
   },
   mounted() {
     this.svg = d3.select("#map").append('svg');
     this.aspect = WIDTH / HEIGHT;
-    this.projection = d3.geoAlbersUsa().translate([WIDTH / 2, HEIGHT / 2]);
+    this.projection = geoAlbersUsaTerritories()
+      .translate([WIDTH / 2, HEIGHT / 2]);
     this.path = d3.geoPath(this.projection);
     this.svg.attr("width", WIDTH)
       .attr("height", HEIGHT);
@@ -59,17 +74,43 @@ export default {
 
   },
   methods: {
+    renderMap() {
+      if(!this.loadingMap && !this.loadingMarkers){
+        this.drawMap();
+        this.drawMarkers();
+      }
+    },
     drawMap() {
       this.svg.append("g").selectAll(".states")
-        .data(topojson.feature(this.uspath, this.uspath.objects.states).features)
+        .data(topojson.feature(this.mapData, this.mapData.objects.states).features)
         .enter().append("path")
         .attr("class", "states")
         .attr("d", this.path);
+      //
+      // a
+      //   .append("path")
+      //   .attr("class", "state-borders")
+      //   .attr("d", this.path(topojson.mesh(this.uspath, this.uspath.objects.states, (a, b) => a !== b)))
 
-      this.svg.append("path")
-        .datum(topojson.mesh(this.uspath, this.uspath.objects.states, (a, b) => a !== b))
-        .attr("class", "state-borders")
-        .attr("d", this.path);
+    this.svg.append("path")
+      .style("fill","none")
+      .style("stroke","#f00")
+      .attr("d", this.projection.getCompositionBorders());
+    },
+    drawMarkers() {
+      this.svg.append("g").selectAll(".marker")
+        .data(this.markersData.filter(e => (e.geo ? (!isNaN(e.geo[0]) || !isNaN(e.geo[1])) : false)))
+        .enter()
+        .append("path")
+        .attr("d", MARKER_PATH)
+        .attr("id", (e, i) => `marker-id-${i}`)
+        .attr("class", (e, i) => `marker marker-category-${i%4}`)
+        .attr("transform", e => `translate(${this.projection(e.geo)[0]},${(-Math.random() * 1000)})scale(${MARKER_S_MAX},${MARKER_S_MAX})`)
+        .transition()
+        .ease(d3.easeBounce)
+        .duration(1500)
+        .attr("transform", e => `translate(${this.projection(e.geo)[0]},${this.projection(e.geo)[1]})scale(${MARKER_S_MIN},${MARKER_S_MIN})`)
+
     },
     resizeContainer() {
       const targetWidth = parseInt(this.svg.node().parentNode.clientWidth);
@@ -88,7 +129,7 @@ export default {
   .states {
       stroke: $dark;
       stroke-width: 1px;
-      fill: $dusk;
+      fill: $white;
       stroke-linejoin: round;
   }
   .states:hover {
@@ -98,10 +139,31 @@ export default {
   .state-borders {
       fill: none;
       stroke: $dark;
-      stroke-width: 1px;
+      stroke-width: 3px;
       stroke-linejoin: round;
       stroke-linecap: round;
       pointer-events: none;
+  }
+  .marker {
+      opacity: 1;
+      stroke-width: 5;
+      stroke: black;
+      -webkit-filter: drop-shadow(12px 12px 7px rgba(0,0,0,0.5));
+      filter: drop-shadow(12px 12px 7px rgba(0,0,0,0.5));
+
+      &:hover {
+        /* fill: #c65067; */
+        opacity: 1;
+      }
+  }
+  .marker-category-0 {
+    fill: $red;
+  }
+  .marker-category-1 {
+    fill: $dusk;
+  }
+  .marker-category-3 {
+    fill: $dark;
   }
 }
 

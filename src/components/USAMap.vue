@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-12 col-md-12 mx-auto">
+    <div class="col mx-auto">
       <div id="map" />
     </div>
   </div>
@@ -12,7 +12,7 @@ import { geoAlbersUsaTerritories } from 'd3-composite-projections';
 import * as topojson from 'topojson';
 import CommonUtils from '../mixins/CommonUtils';
 
-const WIDTH = 960;
+const WIDTH = 920;
 const HEIGHT = 600;
 const MARKER_S_MIN = 0.07;
 const MARKER_S_MAX = 0.15;

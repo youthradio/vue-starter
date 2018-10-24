@@ -1,20 +1,20 @@
 <template>
   <div class="row">
-    <div class="col-12 col-md-12 mx-auto">
+    <div class="col mx-auto">
       <template v-if="!isLoading">
         {{ startData }}
+        <div class="d-flex align-items-center">
+          <span
+            class="icon-facebook-inverted share-icon m-1 pointer"
+            @click="facebookThis"/>
+          <span
+            class="icon-twitter-inverted share-icon m-1 pointer"
+            @click="tweetMessage"/>
+        </div>
       </template>
       <template v-else>
         Loading...
       </template>
-      <div class="d-flex align-items-center pl-3 pb-2">
-        <span
-          class="icon-facebook-inverted share-icon m-1 pointer"
-          @click="facebookThis"/>
-        <span
-          class="icon-twitter-inverted share-icon m-1 pointer"
-          @click="tweetMessage"/>
-      </div>
     </div>
   </div>
 </template>
@@ -33,7 +33,7 @@ export default {
     }
   },
   computed: {
-    
+
   },
   methods: {
     tweetMessage () {

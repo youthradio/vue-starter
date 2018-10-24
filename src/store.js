@@ -4,7 +4,7 @@ import { csvParse } from 'd3-dsv'
 Vue.use(Vuex)
 
 const state = {
-  isLoading: true,
+  isLoading: false,
   markersData: null,
   loadingMarkers: false,
   loadingMap: false,

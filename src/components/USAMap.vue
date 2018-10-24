@@ -127,7 +127,7 @@ export default {
 
     this.svg.append("path")
       .style("fill","none")
-      .style("stroke","#f00")
+      .style("stroke","rgb(0,0,0,0.5)")
       .attr("d", this.projection.getCompositionBorders());
     },
     drawMarkers() {

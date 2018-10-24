@@ -24,7 +24,7 @@ const actions = {
 const mutations = {
   async MARKERS_DATA(state){
     state.loadingMarkers = true;
-    state.markersData  = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vSBL4rLXWCAs0GloIzk-WODWDiBBLBNVwwkmTPuKoYnVtMgE1-VtT_KhTX5SYJ2davMzwOUrqB2lWq6/pub?gid=0&single=true&output=csv')
+    state.markersData  = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vSBL4rLXWCAs0GloIzk-WODWDiBBLBNVwwkmTPuKoYnVtMgE1-VtT_KhTX5SYJ2davMzwOUrqB2lWq6/pub?gid=304433033&single=true&output=csv')
       .then(res => res.text())
       .then(res => csvParse(res))
       .then(data => {

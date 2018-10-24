@@ -30,7 +30,7 @@ export default {
   created() {
   },
   mounted() {
-    const elementRoot = document.querySelector('html');
+    const elementRoot = this.$el;
     const resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         const {

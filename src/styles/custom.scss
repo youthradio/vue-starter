@@ -3,6 +3,7 @@
 @import "fonts";
 @import "icons";
 @import "animations";
+@import 'reset';
 
 //boostrap variables override
 $body-bg: $white;
@@ -50,6 +51,12 @@ body, html {
   background-color: $black;
   color: $white;
 }
+.row-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+}
 /* Document level adjustments */
 html {
   font-size: 17px;
@@ -60,6 +67,3 @@ html {
 @media (max-width: 576px) {
   html { font-size: 13px; }
 }
-
-
-@import "../../node_modules/bootstrap/scss/bootstrap";

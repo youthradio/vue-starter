@@ -31,6 +31,13 @@
   }
 }
 
+
+@mixin breakpointBetween($from, $to) {
+  @media (min-width: $from) and (max-width: $to) {
+    @content;
+  }
+}
+
 // =============================================================================
 // String Replace
 // =============================================================================
@@ -156,5 +163,4 @@
 @mixin box-shadow($args...) {
   -webkit-box-shadow: $args;
   -moz-box-shadow: $args;
-  box-shadow: $args;
 }

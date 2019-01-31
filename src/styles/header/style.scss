@@ -1,0 +1,561 @@
+@import "../variables";
+@import "../mixins";
+
+header.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: $header-height;
+
+  &:before {
+    position: absolute;
+    content: '';
+    z-index: 150;
+    top: -100vh;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    background-color: $black;
+  }
+
+  // Base header
+  .header-container {
+    width: 100%;
+    height: $header-height;
+    display: flex;
+    justify-content: space-between;
+    z-index: 120;
+    background-color: $black;
+
+    > div {
+      display: flex;
+      align-items: center;
+
+      &:first-of-type {
+        flex: 1;
+        justify-content: space-between;
+      }
+    }
+
+    .logo {
+      margin-left: 35px;
+      height: 40px;
+
+      a {
+        overflow: hidden;
+        display: block;
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    .hamburger {
+      margin-right: 20px;
+      width: 35px;
+      height: 25px;
+      @include transform(rotate(0deg));
+      cursor: pointer;
+
+      span {
+        display: block;
+        position: absolute;
+        left: 0;
+        width: 35px;
+        height: 5px;
+        background-color: white;
+        @include transform(rotate(0deg));
+
+        &:nth-child(1) {
+          top: 0;
+          width: 28px;
+        }
+
+        &:nth-child(2),
+        &:nth-child(3) {
+          top: 10px;
+        }
+
+        &:nth-child(4) {
+          top: 20px;
+          width: 28px;
+        }
+      }
+
+      &:hover {
+        span {
+          background-color: $green;
+        }
+      }
+    }
+
+    .icon-join-us {
+      position: absolute;
+      right: 115px;
+
+      &:before {
+        color: white;
+        font-size: 20px;
+      }
+
+      &:hover {
+        &:before {
+          color: white;
+        }
+      }
+    }
+
+    .icon-search {
+      position: absolute;
+      right: 75px;
+
+      &:before {
+        color: white;
+        font-size: 20px;
+      }
+
+      &:hover {
+        &:before {
+          color: white;
+        }
+      }
+    }
+
+    @include breakpoint(small) {
+      > div {
+        &:first-of-type {
+          flex: 1;
+          justify-content: flex-start;
+        }
+      }
+
+      .hamburger {
+        margin-right: 0;
+        margin-left: 30px;
+      }
+
+      .icon-join-us {
+        position: relative;
+        margin-right: 35px;
+        right: auto;
+
+        &:before {
+          font-size: 32px;
+        }
+      }
+
+      .icon-search {
+        position: relative;
+        margin-right: 32px;
+        right: auto;
+
+        &:before {
+          font-size: 29px;
+        }
+      }
+    }
+  }
+
+  // Search
+  .search-container {
+    display: flex;
+    position: absolute;
+    z-index: 110;
+    top: -71px;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background-color: $green;
+
+    &.active {
+      top: $header-height;
+    }
+
+    .search-input {
+      width: 100%;
+      margin: 0 auto;
+
+      form {
+        display: flex;
+
+        input {
+          flex: 1;
+          @include border-radius(1px);
+          padding: 0 13px;
+          height: 31px;
+          line-height: 31px;
+          font-size: 16px;
+        }
+
+        button {
+          margin-left: 13px;
+          @include border-radius(1px);
+          padding-top: 3px;
+          width: 36px;
+          height: 31px;
+          background-color: rgba(255, 255, 255, 0.5);
+          color: white;
+          font-family: 'Solano Gothic MVB', sans-serif;
+          font-weight: 600;
+          font-size: 25px;
+          text-transform: uppercase;
+          text-align: center;
+
+          &:hover {
+            background-color: $black;
+          }
+        }
+      }
+    }
+
+    .icon-close {
+      margin-left: 20px;
+
+      &:before {
+        font-size: 26px;
+        color: white;
+      }
+    }
+
+
+    @include breakpoint(large) {
+      padding: 20px 0 32px;
+      top: -83px;
+
+      .search-input {
+        max-width: 862px;
+      }
+
+      .icon-close {
+        margin-left: 0;
+        margin-right: 50px;
+      }
+    }
+  }
+}
+
+.page-wrapper {
+  padding-top: $header-height;
+}
+
+nav.main-navigation {
+  position: fixed;
+  overflow-y: auto;
+  z-index: 90;
+  top: -100vh;
+  left: 0;
+  padding: $header-height + 30px 35px 35px;
+  width: 100vw;
+  height: 100vh;
+  background-color: $black;
+  background-image: url(require("images/texture.png"));
+  background-position: 110% center;
+
+  a {
+    color: white;
+
+    &:hover {
+      color: $green;
+    }
+  }
+
+  ul.main-menu {
+    margin-bottom: 40px;
+
+    li {
+      font-family: "Days Sans", sans-serif;
+      font-size: 16px;
+      font-weight: 900;
+      line-height: 1.625;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      @include breakpoint(medium) {
+        font-size: 20px;
+      }
+    }
+  }
+
+  ul.social-menu {
+    display: flex;
+    margin-bottom: 40px;
+    justify-content: left;
+    align-items: center;
+
+    @include breakpoint(medium) {
+      justify-content: center;
+    }
+
+    li {
+      margin-right: 40px;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+
+      a {
+        span {
+          &:before {
+            color: white;
+            font-size: 28px;
+          }
+
+          &.icon-youtube {
+            &:before {
+              font-size: 20px;
+            }
+          }
+
+          &:hover {
+            &:before {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  ul.media-menu {
+    margin-bottom: 40px;
+
+    li {
+      font-family: "Solano Gothic MVB", sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      line-height: 1.25;
+
+      @include breakpoint(medium) {
+        font-size: 20px;
+      }
+    }
+  }
+
+  ul.pages-menu {
+    li {
+      font-family: 'Roboto Mono', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.875;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+
+      a {
+        color: $green;
+
+        &:hover {
+          color: white;
+        }
+      }
+
+      @include breakpoint(medium) {
+        font-size: 14px;
+      }
+    }
+  }
+
+  @include breakpoint(small) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: $header-height 120px 100px 130px;
+    background-position: right center;
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      min-height: fit-content;
+    }
+
+    ul.main-menu {
+      margin-bottom: 50px;
+    }
+
+    ul.social-menu {
+      margin-bottom: 30px;
+    }
+
+    ul.media-menu {
+      margin-bottom: 0;
+    }
+
+    ul.pages-menu {
+      li {
+        text-align: right;
+      }
+    }
+  }
+
+  @include breakpoint(medium) {
+    ul.main-menu {
+      li {
+        font-size: 40px;
+      }
+    }
+
+    ul.social-menu {
+      li {
+        margin-right: 50px;
+
+        a {
+          span {
+            &:before {
+              font-size: 36px;
+            }
+
+            &.icon-youtube {
+              &:before {
+                font-size: 24px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    ul.media-menu {
+      li {
+        font-size: 40px;
+      }
+    }
+
+    ul.pages-menu {
+      li {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+.top-header.navigation-open {
+  overflow: hidden;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  header.main-header {
+    .header-container {
+      &:after {
+        position: absolute;
+        content: '';
+        right: 0;
+        left: 0;
+        bottom: -29px;
+        height: 29px;
+        background-color: $black;
+
+        @include breakpoint(small) {
+          content: none;
+        }
+      }
+
+      .logo {
+        z-index: 110;
+
+        a {
+          width: 66px;
+          height: 66px;
+
+          .svg-logo {
+            fill: $green;
+          }
+        }
+      }
+
+      .hamburger {
+        span {
+          &:nth-child(1) {
+            top: 18px;
+            left: 50%;
+            width: 0;
+          }
+
+          &:nth-child(2) {
+            @include transform(rotate(45deg));
+          }
+
+          &:nth-child(3) {
+            @include transform(rotate(-45deg));
+          }
+
+          &:nth-child(4) {
+            top: 18px;
+            left: 50%;
+            width: 0;
+          }
+        }
+      }
+    }
+
+    .search-container {
+      &.active {
+        top: 99px;
+      }
+    }
+  }
+
+  nav.main-navigation {
+    top: 0;
+  }
+}
+
+.top-header.header-sticky {
+  header.main-header {
+    height: 68px;
+
+    .header-container {
+      height: 68px;
+    }
+
+    .search-container {
+      &.active {
+        top: 68px;
+      }
+    }
+  }
+}
+
+// WP admin bar adjustments
+.top-header.admin-bar {
+  #wpadminbar {
+    display: none;
+  }
+
+  .page-wrapper {
+    padding-top: $header-height - 46px;
+  }
+
+  @include breakpoint(medium) {
+    #wpadminbar {
+      display: block;
+
+      * {
+        color: white;
+      }
+    }
+
+    header.main-header {
+      top: 46px;
+    }
+
+    nav.main-navigation {
+      padding-top: $header-height + 46px;
+    }
+
+    .page-wrapper {
+      padding-top: $header-height;
+    }
+  }
+
+  @include breakpoint(782px) {
+    header.main-header {
+      top: 32px;
+    }
+
+    nav.main-navigation {
+      padding-top: $header-height + 32px;
+    }
+  }
+}

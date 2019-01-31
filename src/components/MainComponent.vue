@@ -1,21 +1,19 @@
 <template>
   <div class="row">
-    <div class="col mx-auto">
-      <template v-if="!isLoading">
-        {{ startData }}
-        <div class="d-flex align-items-center">
-          <span
-            class="icon-facebook-inverted share-icon m-1 pointer"
-            @click="facebookThis"/>
-          <span
-            class="icon-twitter-inverted share-icon m-1 pointer"
-            @click="tweetMessage"/>
-        </div>
-      </template>
-      <template v-else>
-        Loading...
-      </template>
-    </div>
+    <template v-if="!isLoading">
+      {{ startData }}
+      <div class="d-flex align-items-center">
+        <span
+          class="icon-facebook-inverted share-icon m-1 pointer"
+          @click="facebookThis"/>
+        <span
+          class="icon-twitter-inverted share-icon m-1 pointer"
+          @click="tweetMessage"/>
+      </div>
+    </template>
+    <template v-else>
+      Loading...
+    </template>
   </div>
 </template>
 

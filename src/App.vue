@@ -1,12 +1,11 @@
 <template>
-  <div
-    id="app"
-    class="container-fluid">
-    <div class="row">
-      <div class="col-12 col-sm-10 mx-auto">
-        <MainComponent />
-        <USAMap />
-      </div>
+  <div 
+    id="app" 
+    class="row-column">
+    <MHeader />
+    <div class="row-column">
+      <MainComponent />
+      <USAMap />
     </div>
   </div>
 </template>
@@ -14,6 +13,7 @@
 <script>
 import MainComponent from './components/MainComponent.vue'
 import USAMap from './components/USAMap.vue'
+import MHeader from './components/MHeader.vue'
 
 import ResizeObserver from 'resize-observer-polyfill';
 
@@ -21,7 +21,8 @@ export default {
   name: 'App',
   components: {
     MainComponent,
-    USAMap
+    USAMap,
+    MHeader
   },
   data() {
     return {}

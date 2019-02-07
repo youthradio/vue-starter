@@ -1,7 +1,5 @@
 <template>
-  <div 
-    id="app" 
-    class="row-column">
+  <div>
     <MHeader />
     <div class="row-column">
       <MainComponent />

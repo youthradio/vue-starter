@@ -500,7 +500,11 @@ nav.main-navigation {
     top: 0;
   }
 }
-
+.top-header.hide-navigation{
+  header.main-header {
+    top: -100px;
+  }
+}
 .top-header.header-sticky {
   header.main-header {
     height: 68px;

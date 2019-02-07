@@ -1,8 +1,6 @@
 <template>
   <div class="row">
-    <div class="col mx-auto">
-      <div id="map" />
-    </div>
+    <div id="map" />
   </div>
 </template>
 

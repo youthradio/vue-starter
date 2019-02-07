@@ -1,5 +1,5 @@
 <template>
-  <div :class="['top-header row', activeMenu ? 'navigation-open':'']">
+  <div :class="['top-header header-sticky row', activeMenu ? 'navigation-open':'', hideNavbar ? 'hide-navigation':'']">
     <header class="main-header">
       <div class="header-container">
         <div>
@@ -142,11 +142,22 @@ export default {
     return {
       activeMenu: false,
       searchContainer: false,
+      hideNavbar: false,
+      lastScrollY: 0,
     }
   },
   computed: {
+
+  },
+  mounted() {
+    window.addEventListener('scroll', (event) => this.debouceEvent(event, this.onScroll), false);
   },
   methods: {
+    onScroll(){
+      this.hideNavbar = window.scrollY > 83 ? true: false;
+      this.hideNavbar = window.scrollY > this.lastScrollY ? true: false;
+      this.lastScrollY = window.scrollY;
+    },
     toggleMenu(){
       this.activeMenu = !this.activeMenu;
     },

@@ -3,7 +3,7 @@ module.exports = {
     sourceMap: true
   },
 
-  baseUrl: '/vue-starter/',
+  publicPath: '/vue-starter/',
   outputDir: 'dist',
   assetsDir: 'src/assets',
   runtimeCompiler: undefined,
